@@ -11,7 +11,11 @@ const compression = require('compression');
 const cors = require('cors');
 
 // Custom packages
+const AppError = require('./utils/appError')
 const viewRouter = require('./routes/viewRoutes');
+
+// Services
+const trelloRouter = require('./routes/trelloRoutes');
 
 // Start express app
 const app = express();
@@ -70,6 +74,7 @@ app.use(compression());
 
 // Routes
 app.use('/', viewRouter);
+app.use('/trello', trelloRouter);
 
 //Handle not found routes
 app.all('*', (req, res, next) => {
